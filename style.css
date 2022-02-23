@@ -1,0 +1,156 @@
+/* ==== RESET ==== */
+* {
+  margin: 0; /* zerar margem */
+  padding: 0; /* zerar preenchimento */
+  box-sizing: border-box; /* o preenchimento do conteúdo será incluído a partir da borda. */
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+/* ==== VARIABLES ==== */
+:root {
+  --header-height: 4.5rem;
+  /* colors */
+  --hue: 159;
+  /* HSL color mode */
+  --base-color: hsl(32 100% 93%);
+  --base-color-second: hsl(var(--hue) 49% 58%);
+  --base-color-second-before: hsla(var(--hue), 49%, 58%, 0.5);
+  --base-color-alt: hsl(var(--hue) 57% 53%);
+  --title-color: hsl(var(--hue) 41% 10%);
+  --text-color: hsl(0 0% 46%);
+  --text-color-light: hsl(0 0% 98%);
+  --body-color: hsl(0 0% 98%);
+
+  /* fonts */
+  --title-font-size: 1.875rem;
+  --subtitle-font-size: 1rem;
+
+  --title-font: "Montserrat", sans-serif;
+  --body-font: "Noto Serif Display", serif;
+}
+
+/* ==== BASE ==== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font: 400 0.8rem "Montserrat", sans-serif;
+  color: var(--title-color);
+  background: var(--body-color);
+  -webkit-font-smoothing: antialiased; /* negrito de leve (funciona em alguns navegadores) */
+}
+
+h1 {
+  font: 700 1.875rem "Noto Serif Display", sans-serif;
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased; /* negrito de leve (funciona em alguns navegadores) */
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 36%, 57%, 1) 0%,
+    hsla(var(--hue), 65%, 88%, 0.34) 100%
+  );
+}
+
+/* ==== LAYOUT ==== */
+
+#header {
+  border-bottom: 1px solid #e4e4e4;
+  margin-bottom: 2rem;
+  display: flex; /* habilitar conteúdo interno do header ser flexível, se adaptando ao eixo horizontal da page */
+  width: 100%; /* header de 100% para não transbordar para o lado */
+  position: fixed; /* posição fixa independente da rolagem */
+  top: 0;
+  left: 0;
+  z-index: 100; /* sobreposição de 100 */
+  background-color: var(--body-color);
+}
+
+nav {
+  height: var(--header-height);
+  align-items: center; /* alinhar os itens do nav ao meio */
+  display: flex; /* jogar tudo que está no nav ao lado e não abaixo dos elementos (organização horizontal) */
+  justify-content: space-between; /* jogar um elemento no canto direito e outro elemento no canto esquerdo */
+  width: 100%; /* elemento filho tem que ocupar 100% do elemento pai */
+}
+
+.logo {
+  font: 700 1.3125rem "Noto Serif Display", sans-serif;
+  color: orange;
+}
+
+.logo span {
+  color: red;
+}
+
+.container {
+  margin-left: 1.5rem; /* margem esquerda de 24px. */
+  margin-right: 1.5rem; /* margem direita de 24px. */
+  font: 400 1.875rem "Noto Serif Display", sans-serif;
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased; /* negrito de leve (funciona em alguns navegadores) */
+}
+
+.grid {
+  display: grid; /* ativar a funcionalidade do gap */
+  gap: 2rem; /* distanciamento entre dois filhos (.image e .text) */
+}
+
+.section {
+  padding: 5rem 0; /* distância de 5rem acima/abaixo e 0 esquerda/direita */
+}
+
+main {
+  margin-top: var(--header-height);
+}
+
+/* ==== HOME ==== */
+
+#home {
+  overflow: hidden; /* manter o limite do home para não transbordar para o lado */
+}
+
+#home .container {
+  margin: 0;
+}
+
+#home .image {
+  position: relative; /* habilitar o position absolute do elemento filho para posicionar uma sombra "por baixo" da img do .image */
+}
+
+#home .image::before {
+  /* funcionalidade que me permite criar um elemento fictício (before é 'antes' do conteúdo) */
+  content: "";
+  height: 100%; /* preencher 100% da altura da image */
+  width: 100%; /* preencher 100% da largura da image */
+  background: var(--base-color-second-before);
+  position: absolute;
+  top: -16.8%; /* estou deslocando 16.8% para cima */
+  left: 16.8%; /* estou deslocando 16.8% na esquerda */
+  z-index: 0;
+}
+
+#home .image img {
+  position: relative; /* habilitar funcionalidades específicas para o que eu irei fazer */
+  right: 2.9375rem; /* empurrei a imagem 47px na direita (top, left, right e bottom são habilitadas por causa do position) */
+}
+
+#home .image img,
+#home .image::before {
+  border-radius: 0.25rem;
+}
+
+#home .text {
+  margin-left: 1.5rem; /* margem esquerda de 24px. */
+  margin-right: 1.5rem; /* margem direita de 24px. */
+  text-align: center;
+}
