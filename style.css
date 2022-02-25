@@ -30,7 +30,7 @@ img {
   --gradient: linear-gradient(
     to right,
     rgb(236, 159, 14) 0%,
-    rgb(224, 224, 24) 100%
+    rgb(224, 224, 24) 100% 
   );
   --gradient-reverse: linear-gradient(
     to left,
