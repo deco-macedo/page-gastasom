@@ -5,29 +5,50 @@
   box-sizing: border-box; /* o preenchimento do conteúdo será incluído a partir da borda. */
 }
 
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 img {
   width: 100%;
   height: auto;
 }
 
 /* ==== VARIABLES ==== */
+
 :root {
   --header-height: 4.5rem;
   /* colors */
+
   --hue: 159;
+
+  /* gradient menu */
+  --gradient: linear-gradient(
+    to right,
+    rgb(236, 159, 14) 0%,
+    rgb(224, 224, 24) 100%
+  );
+  --gradient-reverse: linear-gradient(
+    to left,
+    rgb(236, 159, 14) 0%,
+    rgb(224, 224, 24) 100%
+  );
 
   /* HSL color mode Deco */
   --home-color: hsl(32, 100%, 93%) 40%;
-  --about-color: hsl(233, 40%, 4%) 40%;
-  --discography-color: hsl(356, 27%, 73%) 40%;
+  --about-color: hsl(48, 38%, 85%) 40%;
+  --discography-color: hsl(7, 19%, 82%) 40%;
 
   /* HSL color mode */
-  --base-color: hsl(32 100% 93%);
-  --base-color-second: hsl(var(--hue) 49% 58%);
-  --base-color-second-before: hsla(var(--hue), 49%, 58%, 0.5);
+  --base-color: hsl(var(--hue) 35% 44%);
+  --base-color-second: hsl(var(--hue) 65% 88%);
   --base-color-alt: hsl(var(--hue) 57% 53%);
-  --title-color: hsl(0 0% 46%);
-  --text-color: hsl(var(--hue) 41% 10%);
+  --title-color: hsl(var(--hue) 41% 10%);
+  --text-color: hsl(0 0% 46%);
   --text-color-light: hsl(0 0% 98%);
   --body-color: hsl(0 0% 98%);
 
@@ -42,34 +63,18 @@ img {
 /* ==== BASE ==== */
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* rolagem suave entre sections */
 }
 
-body {
-  font: 400 0.8rem "Montserrat", sans-serif;
-  color: var(--title-color);
-  background: var(--body-color);
-  -webkit-font-smoothing: antialiased; /* negrito de leve (funciona em alguns navegadores) */
-}
-
-h1 {
+.title {
   font: 700 1.875rem "Noto Serif Display", sans-serif;
   color: var(--title-color);
-  -webkit-font-smoothing: antialiased; /* negrito de leve (funciona em alguns navegadores) */
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-p {
-  font: 400 1.5rem "Montserrat", sans-serif;
-  color: var(--text-color);
-  -webkit-font-smoothing: antialiased; /* negrito de leve (funciona em alguns navegadores) */
-  margin-bottom: 1rem;
+  text-decoration: none;
   text-align: center;
 }
 
 .divider {
-  height: 1px;
+  height: 2px;
   background: linear-gradient(
     270deg,
     hsla(var(--hue), 36%, 57%, 1) 0%,
@@ -88,8 +93,37 @@ p {
   top: 0;
   left: 0;
   z-index: 100; /* sobreposição de 100 */
-  background-color: var(--body-color);
+  background: var(--gradient);
 }
+
+#header.scroll {
+  background: var(--gradient-reverse);
+  box-shadow: 0px 0px 12px rgba(68, 65, 65, 0.8);
+}
+
+#header.scroll .icon-menu1 {
+  color: rgb(14, 14, 83);
+}
+
+.container {
+  position: relative;
+  justify-content: space-between;
+  margin-left: 1.5rem; /* margem esquerda de 24px. */
+  margin-right: 1.5rem; /* margem direita de 24px. */
+}
+
+.logo {
+  position: absolute;
+  height: 5rem;
+  top: 0.2rem;
+}
+
+.logo img {
+  height: 100%;
+  width: auto;
+}
+
+/* ==== NAVIGATION (MENU) ==== */
 
 nav {
   height: var(--header-height);
@@ -99,23 +133,110 @@ nav {
   width: 100%; /* elemento filho tem que ocupar 100% do elemento pai */
 }
 
-.logo {
-  height: 5rem;
-  font: 700 1.3125rem "Noto Serif Display", sans-serif;
-  color: orange;
+nav ul li {
+  /* alinhar textos do menu ao centro */
+  text-align: center;
 }
 
-.logo img {
-  height: 100%;
-  width: auto;
+nav ul li a {
+  transition: color 0.2s;
+  position: relative; /* funciona para habilitar o position: absolute no sub element::after */
 }
 
-.container {
-  margin-left: 1.5rem; /* margem esquerda de 24px. */
-  margin-right: 1.5rem; /* margem direita de 24px. */
-  font: 400 1.875rem "Noto Serif Display", sans-serif;
+nav ul li a:hover {
+  color: var(--base-color);
+}
+
+nav ul li a::after {
+  content: "";
+  width: 0%; /* não quero que ele apareça fixo */
+  height: 2px;
+  background: var(--base-color);
+
+  position: absolute; /* funciona se o elemento pai estiver como position: relative */
+  left: 0;
+  bottom: -1.5rem;
+
+  transition: width 0.2s;
+}
+
+nav ul li a:hover::after {
+  width: 100%; /* agora apareça */
+}
+
+nav .menu {
+  font: 400 0.8rem "Montserrat", sans-serif;
   color: var(--text-color);
-  -webkit-font-smoothing: antialiased; /* negrito de leve (funciona em alguns navegadores) */
+  font-size: 0.8rem;
+  opacity: 0; /* ESCONDER MENU */
+  visibility: hidden; /* ESCONDER MENU */
+  top: -20rem; /* efeito 'descida' quando clico no menu */
+  transition: 0.2s; /* transição da 'descida' */
+}
+
+nav .menu ul {
+  display: none;
+}
+
+nav.show .menu ul {
+  display: grid;
+}
+
+nav.show .menu {
+  opacity: 1; /* MOSTRAR MENU */
+  visibility: visible; /* MOSTRAR MENU */
+
+  background: var(--body-color);
+
+  height: 100vh; /* 100% do viewport height */
+  width: 100vw; /* 100% do viewport width */
+
+  position: fixed; /* habilitar posição fixa */
+  top: 0; /* habilitar topo 0 */
+  left: 0; /* habilitar esquerda 0 */
+
+  display: grid;
+  place-content: center; /* jogar o menu para o meio da tela */
+}
+
+nav.show ul.grid {
+  gap: 4rem;
+}
+
+/* toogle menu */
+
+.toogle {
+  color: var(--base-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+nav .icon-close {
+  visibility: hidden;
+  opacity: 0;
+
+  position: absolute;
+  top: -1.5rem; /* transição pra cima quando apertar o botão */
+  right: 0;
+
+  transition: 0.2s;
+}
+
+nav.show div.icon-close {
+  visibility: visible;
+  opacity: 1;
+  font-size: 1.7rem;
+  top: 1.5rem; /* transição pra cima quando apertar o botão */
+}
+
+/* ==== MAIN ==== */
+
+main {
+  margin-top: var(--header-height);
+}
+
+.section {
+  padding: 5rem 0; /* distância de 5rem acima/abaixo e 0 esquerda/direita */
 }
 
 .grid {
@@ -123,19 +244,11 @@ nav {
   gap: 2rem; /* distanciamento entre dois filhos (.image e .text) */
 }
 
-.section {
-  padding: 5rem 0; /* distância de 5rem acima/abaixo e 0 esquerda/direita */
-}
-
-main {
-  margin-top: var(--header-height);
-}
-
 /* ==== HOME ==== */
 
 #home {
   overflow: hidden; /* manter o limite do home para não transbordar para o lado */
-  background: var(--home-color);
+  background: var(--home--);
 }
 
 #home .container {
@@ -160,7 +273,7 @@ main {
 
 #home .image img {
   position: relative; /* habilitar funcionalidades específicas para o que eu irei fazer */
-  right: 2.9375rem; /* empurrei a imagem 47px na direita (top, left, right e bottom são habilitadas por causa do position) */
+  right: 1.4775rem; /* empurrei a imagem na direita (top, left, right e bottom são habilitadas por causa do position) */
 }
 
 #home .image img,
@@ -183,6 +296,10 @@ span.one {
 
 span.two {
   color: orange;
+}
+
+span.three {
+  color: blue;
 }
 
 /* ==== ABOUT ==== */
@@ -245,7 +362,7 @@ ul span.six {
 
 #discography .card {
   width: 100%;
-  background: #e3e3e3;
+  background: var(--gradient);
   padding: 3.625rem 2rem;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
   border-bottom: 0.25rem solid var(--base-color);
@@ -260,7 +377,7 @@ ul span.six {
 
 #discography .ep-quintal-container {
   font: 400 0.8rem "Montserrat", sans-serif;
-  color: var(--text-color);
+  color: var(--title-color);
   font-size: 1rem;
   margin-left: 1.5rem; /* margem esquerda de 24px. */
   margin-right: 1.5rem; /* margem direita de 24px. */
