@@ -26,7 +26,7 @@ img {
 
   --hue: 159;
 
-  /* gradient menu */
+  /* gradient colors */
   --gradient: linear-gradient(
     to right,
     rgb(236, 159, 14) 0%,
@@ -36,6 +36,11 @@ img {
     to left,
     rgb(236, 159, 14) 0%,
     rgb(224, 224, 24) 100%
+  );
+  --gradient-section: linear-gradient(
+    to right,
+    white 20%,
+    rgb(250, 250, 101) 100%
   );
 
   /* HSL color mode Deco */
@@ -248,7 +253,7 @@ main {
 
 #home {
   overflow: hidden; /* manter o limite do home para não transbordar para o lado */
-  background: var(--home--);
+  background: var(--body-color);
 }
 
 #home .container {
@@ -264,7 +269,8 @@ main {
   content: "";
   height: 100%; /* preencher 100% da altura da image */
   width: 100%; /* preencher 100% da largura da image */
-  background: var(--base-color-second-before);
+  background: var(--base-color-second);
+  opacity: 70%;
   position: absolute;
   top: -16.8%; /* estou deslocando 16.8% para cima */
   left: 16.8%; /* estou deslocando 16.8% na esquerda */
@@ -305,7 +311,7 @@ span.three {
 /* ==== ABOUT ==== */
 
 #about {
-  background: var(--about-color);
+  background: var(--body-color);
 }
 
 #about .text {
@@ -337,11 +343,11 @@ ul span.three {
 }
 
 ul span.four {
-  color: white;
+  color: black;
 }
 
 ul span.five {
-  color: yellow;
+  color: rgb(161, 161, 5);
 }
 
 ul span.six {
@@ -351,7 +357,7 @@ ul span.six {
 /* ==== DISCOGRAPHY ==== */
 
 #discography {
-  background: var(--discography-color);
+  background: var(--body-color);
 }
 
 #discography .text h1 {
@@ -368,6 +374,7 @@ ul span.six {
   border-bottom: 0.25rem solid var(--base-color);
   border-radius: 0.25rem 0.25rem 0.25rem 0.25rem;
   display: flex;
+  opacity: 100%;
 }
 
 #discography .card img {
