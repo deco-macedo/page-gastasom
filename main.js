@@ -36,3 +36,23 @@ for (const element of toogle) {
         header.classList.remove('scroll')
       }
     })
+
+     //--------------- MOSTRAR ELEMENTOS QUANDO DER SCROOL NA PAGE --------------- //
+
+     const scrollReveal = ScrollReveal({
+      origin: 'top',
+      distance: '30px',
+      duration: 700,
+      reset: true
+    })
+    
+    scrollReveal.reveal(
+      `#home .image, #home .text,
+      #about .title, #about .image, #about .text,
+      #discography .title, #discography .card,
+      #testimonials header, #testimonials .testimonials
+      #contact .title, #contact .links,
+      footer .brand, footer .social
+      `,
+      { interval: 100 }
+    )
