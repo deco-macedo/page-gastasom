@@ -30,7 +30,7 @@ img {
   --gradient: linear-gradient(
     to right,
     rgb(236, 159, 14) 0%,
-    rgb(224, 224, 24) 100% 
+    rgb(224, 224, 24) 100%
   );
   --gradient-reverse: linear-gradient(
     to left,
@@ -72,10 +72,27 @@ html {
 }
 
 .title {
+  margin-bottom: 1.5rem;
   font: 700 1.875rem "Noto Serif Display", sans-serif;
   color: var(--title-color);
   text-decoration: none;
   text-align: center;
+}
+
+.button {
+  background-color: var(--base-color);
+  color: var(--text-color-light);
+  height: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 2rem;
+  border-radius: 0.25rem;
+  font: 500 1rem var(--body-font);
+  transition: background 0.3s;
+}
+
+.button:hover {
+  background: var(--base-color-alt);
 }
 
 .divider {
@@ -242,11 +259,22 @@ main {
 
 .section {
   padding: 5rem 0; /* distância de 5rem acima/abaixo e 0 esquerda/direita */
+  display: flex;
+  justify-content: center;
 }
 
 .grid {
   display: grid; /* ativar a funcionalidade do gap */
   gap: 2rem; /* distanciamento entre dois filhos (.image e .text) */
+}
+
+.text {
+  font: 400 0.8rem "Montserrat", sans-serif;
+  color: var(--title-color);
+  font-size: 1rem;
+  margin-left: 1.5rem; /* margem esquerda de 24px. */
+  margin-right: 1.5rem; /* margem direita de 24px. */
+  text-align: center;
 }
 
 /* ==== HOME ==== */
@@ -262,6 +290,7 @@ main {
 
 #home .image {
   position: relative; /* habilitar o position absolute do elemento filho para posicionar uma sombra "por baixo" da img do .image */
+  margin-left: 1.5rem;
 }
 
 #home .image::before {
@@ -287,15 +316,6 @@ main {
   border-radius: 0.25rem;
 }
 
-#home .text {
-  font: 400 0.8rem "Montserrat", sans-serif;
-  color: var(--text-color);
-  font-size: 1rem;
-  margin-left: 1.5rem; /* margem esquerda de 24px. */
-  margin-right: 1.5rem; /* margem direita de 24px. */
-  text-align: center;
-}
-
 span.one {
   color: red;
 }
@@ -314,13 +334,45 @@ span.three {
   background: var(--body-color);
 }
 
-#about .text {
-  font: 400 0.8rem "Montserrat", sans-serif;
-  color: var(--title-color);
-  font-size: 1rem;
-  margin-left: 1.5rem; /* margem esquerda de 24px. */
-  margin-right: 1.5rem; /* margem direita de 24px. */
-  text-align: center;
+.group-images {
+  display: flex;
+}
+
+.image.one {
+  flex: 1;
+}
+
+.image.two {
+  flex: 1;
+  margin-top: 12rem;
+}
+
+#about .image {
+  position: relative; /* habilitar o position absolute do elemento filho para posicionar uma sombra "por baixo" da img do .image */
+  margin-left: 1.5rem;
+}
+
+#about .image::before {
+  /* funcionalidade que me permite criar um elemento fictício (before é 'antes' do conteúdo) */
+  content: "";
+  height: 100%; /* preencher 100% da altura da image */
+  width: 100%; /* preencher 100% da largura da image */
+  background: var(--base-color-second);
+  opacity: 70%;
+  position: absolute;
+  top: -15%; /* estou deslocando 16.8% para cima */
+  left: -15%; /* estou deslocando 16.8% na esquerda */
+  z-index: 0;
+}
+
+#about .image img {
+  position: relative; /* habilitar funcionalidades específicas para o que eu irei fazer */
+  right: 1.4775rem; /* empurrei a imagem na direita (top, left, right e bottom são habilitadas por causa do position) */
+}
+
+#about .image img,
+#about .image::before {
+  border-radius: 0.25rem;
 }
 
 #about .team {
@@ -358,12 +410,6 @@ ul span.six {
 
 #discography {
   background: var(--body-color);
-}
-
-#discography .text h1 {
-  display: grid;
-  align-items: center;
-  text-align: center;
 }
 
 #discography .card {
@@ -421,5 +467,40 @@ ul span.six {
 #discography .single-scores-container p {
   width: 100%;
   display: block;
+  text-align: center;
+}
+
+/* ==== CONTACT ==== */
+
+#contact {
+  background: var(--body-color);
+  align-items: center;
+}
+
+#contact .button {
+  margin-top: 2rem;
+}
+
+#contact .button i {
+  font-size: 1.5rem;
+  margin-right: 0.625rem;
+}
+
+#contact ul.grid {
+  gap: 2rem;
+}
+
+#contact .text {
+  gap: 2rem;
+}
+
+#contact .links {
+  display: grid;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
