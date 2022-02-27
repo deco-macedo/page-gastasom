@@ -414,6 +414,7 @@ ul span.six {
 
 #discography .card {
   width: 100%;
+  height: 100%;
   background: var(--gradient);
   padding: 3.625rem 2rem;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.08);
@@ -425,7 +426,7 @@ ul span.six {
 
 #discography .card img {
   object-fit: cover;
-  clip-path: circle();
+  border-radius: 0.3rem;
 }
 
 #discography .ep-quintal-container {
@@ -444,8 +445,44 @@ ul span.six {
 }
 
 #discography .logo-quintal {
-  display: flex;
-  align-items: center;
+  position: relative;
+  float: left;
+}
+
+.logo-quintal a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  display: block;
+}
+
+.logo-quintal a:hover {
+  background: var(--gradient);
+  color: #000;
+  -moz-box-shadow: 0 3px 10px 0 #ccc;
+  -webkit-box-shadow: 0 3px 10px 0 #ccc;
+  text-shadow: 0px 0px 5px #fff;
+}
+
+#discography .logo-quintal ul {
+  position: absolute;
+  box-sizing: content-box;
+  width: 100%;
+  background-color: #111;
+  box-shadow: 0 14px 35px 0 rgba(9, 9, 12, 0.4);
+  border-radius: 4px;
+  display: none;
+}
+
+#discography .logo-quintal:hover ul {
+  display: block;
+  justify-content: center;
+}
+
+#discography .logo-quintal ul li {
+  font-size: 0.875rem;
+  display: block;
+  width: 100%;
 }
 
 #discography .single-scores-container {
@@ -468,6 +505,47 @@ ul span.six {
   width: 100%;
   display: block;
   text-align: center;
+}
+
+#discography .logo-cores {
+  position: relative;
+  float: left;
+}
+
+.logo-cores a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  display: block;
+}
+
+.logo-cores a:hover {
+  background: var(--gradient);
+  color: #fff;
+  -moz-box-shadow: 0 3px 10px 0 #ccc;
+  -webkit-box-shadow: 0 3px 10px 0 #ccc;
+  text-shadow: 0px 0px 5px #fff;
+}
+
+#discography .logo-cores ul {
+  position: absolute;
+  box-sizing: content-box;
+  width: 100%;
+  background-color: #111;
+  box-shadow: 0 14px 35px 0 rgba(9, 9, 12, 0.4);
+  border-radius: 4px;
+  display: none;
+}
+
+#discography .logo-cores:hover ul {
+  display: block;
+  justify-content: center;
+}
+
+#discography .logo-cores ul li {
+  font-size: 0.875rem;
+  display: block;
+  width: 100%;
 }
 
 /* ==== CONTACT ==== */
