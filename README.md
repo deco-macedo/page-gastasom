@@ -30,4 +30,4 @@ Utilitários
 
 ## 💻 Projeto
 
-Página portfólio da banda Gastasom. <a href="https://deco-macedo.github.io/page-gastasom/">Clique aqui para acessar o projeto.</a>
+Página portfólio da banda Gastasom. <a href="https://deco-macedo.github.io/page-gastasom/" target="_blank">Clique aqui para acessar o projeto.</a>
