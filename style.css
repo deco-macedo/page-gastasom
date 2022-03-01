@@ -71,12 +71,19 @@ html {
   scroll-behavior: smooth; /* rolagem suave entre sections */
 }
 
+body {
+  font: 400 1rem var(--body-font);
+  color: var(--text-color);
+  background: var(--body-color);
+  -webkit-font-smoothing: antialiased;
+}
+
 .title {
-  margin-bottom: 1.5rem;
   font: 700 1.875rem "Noto Serif Display", sans-serif;
   color: var(--title-color);
-  text-decoration: none;
+  margin-bottom: 1.5rem;
   text-align: center;
+  -webkit-font-smoothing: auto;
 }
 
 .button {
@@ -105,17 +112,43 @@ html {
 }
 
 /* ==== LAYOUT ==== */
+.container {
+  position: relative;
+  justify-content: space-between;
+  margin-left: 1.5rem; /* margem esquerda de 24px. */
+  margin-right: 1.5rem; /* margem direita de 24px. */
+}
+
+.grid {
+  display: grid; /* ativar a funcionalidade do gap */
+  gap: 2rem; /* distanciamento entre dois filhos (.image e .text) */
+}
+
+.section {
+  padding: calc(5rem + var(--header-height)) 0;
+  display: flex;
+  justify-content: center;
+}
+
+.section header {
+  margin-bottom: 4rem;
+}
+
+.section header strong {
+  color: var(--base-color);
+}
 
 #header {
   border-bottom: 1px solid #e4e4e4;
   margin-bottom: 2rem;
   display: flex; /* habilitar conteúdo interno do header ser flexível, se adaptando ao eixo horizontal da page */
-  width: 100%; /* header de 100% para não transbordar para o lado */
+
   position: fixed; /* posição fixa independente da rolagem */
   top: 0;
   left: 0;
   z-index: 100; /* sobreposição de 100 */
   background: var(--gradient);
+  width: 100%; /* header de 100% para não transbordar para o lado */
 }
 
 #header.scroll {
@@ -127,17 +160,11 @@ html {
   color: rgb(14, 14, 83);
 }
 
-.container {
-  position: relative;
-  justify-content: space-between;
-  margin-left: 1.5rem; /* margem esquerda de 24px. */
-  margin-right: 1.5rem; /* margem direita de 24px. */
-}
+/* ==== LOGO ==== */
 
 .logo {
-  position: absolute;
-  height: 5rem;
-  top: 0.2rem;
+  height: 7rem;
+  margin-top: 1rem;
 }
 
 .logo img {
@@ -149,8 +176,8 @@ html {
 
 nav {
   height: var(--header-height);
-  align-items: center; /* alinhar os itens do nav ao meio */
   display: flex; /* jogar tudo que está no nav ao lado e não abaixo dos elementos (organização horizontal) */
+  align-items: center; /* alinhar os itens do nav ao meio */
   justify-content: space-between; /* jogar um elemento no canto direito e outro elemento no canto esquerdo */
   width: 100%; /* elemento filho tem que ocupar 100% do elemento pai */
 }
@@ -187,13 +214,13 @@ nav ul li a:hover::after {
 }
 
 nav .menu {
-  font: 400 0.8rem "Montserrat", sans-serif;
-  color: var(--text-color);
-  font-size: 0.8rem;
   opacity: 0; /* ESCONDER MENU */
   visibility: hidden; /* ESCONDER MENU */
   top: -20rem; /* efeito 'descida' quando clico no menu */
   transition: 0.2s; /* transição da 'descida' */
+  font: 400 0.8rem "Montserrat", sans-serif;
+  color: var(--text-color);
+  font-size: 0.8rem;
 }
 
 nav .menu ul {
@@ -254,18 +281,7 @@ nav.show div.icon-close {
 /* ==== MAIN ==== */
 
 main {
-  margin-top: var(--header-height);
-}
-
-.section {
-  padding: 5rem 0; /* distância de 5rem acima/abaixo e 0 esquerda/direita */
-  display: flex;
-  justify-content: center;
-}
-
-.grid {
-  display: grid; /* ativar a funcionalidade do gap */
-  gap: 2rem; /* distanciamento entre dois filhos (.image e .text) */
+  margin-top: calc(var(--header-height) + 2rem);
 }
 
 .text {
@@ -294,21 +310,19 @@ main {
 }
 
 #home .image::before {
-  /* funcionalidade que me permite criar um elemento fictício (before é 'antes' do conteúdo) */
   content: "";
-  height: 100%; /* preencher 100% da altura da image */
-  width: 100%; /* preencher 100% da largura da image */
+  height: 100%;
+  width: 100%;
   background: var(--base-color-second);
-  opacity: 70%;
   position: absolute;
-  top: -16.8%; /* estou deslocando 16.8% para cima */
-  left: 16.8%; /* estou deslocando 16.8% na esquerda */
+  top: -16.8%;
+  left: 16.7%;
   z-index: 0;
 }
 
 #home .image img {
-  position: relative; /* habilitar funcionalidades específicas para o que eu irei fazer */
-  right: 1.4775rem; /* empurrei a imagem na direita (top, left, right e bottom são habilitadas por causa do position) */
+  position: relative;
+  right: 2.93rem;
 }
 
 #home .image img,
@@ -334,40 +348,23 @@ span.three {
   background: var(--body-color);
 }
 
-.group-images {
-  display: flex;
-}
-
-.image.one {
-  flex: 1;
-}
-
-.image.two {
-  flex: 1;
-  margin-top: 12rem;
-}
-
 #about .image {
-  position: relative; /* habilitar o position absolute do elemento filho para posicionar uma sombra "por baixo" da img do .image */
-  margin-left: 1.5rem;
+  position: relative;
 }
 
 #about .image::before {
-  /* funcionalidade que me permite criar um elemento fictício (before é 'antes' do conteúdo) */
   content: "";
-  height: 100%; /* preencher 100% da altura da image */
-  width: 100%; /* preencher 100% da largura da image */
+  height: 100%;
+  width: 100%;
   background: var(--base-color-second);
-  opacity: 70%;
   position: absolute;
-  top: -15%; /* estou deslocando 16.8% para cima */
-  left: -15%; /* estou deslocando 16.8% na esquerda */
+  top: -8.3%;
+  left: -8%;
   z-index: 0;
 }
 
 #about .image img {
-  position: relative; /* habilitar funcionalidades específicas para o que eu irei fazer */
-  right: 1.4775rem; /* empurrei a imagem na direita (top, left, right e bottom são habilitadas por causa do position) */
+  position: relative;
 }
 
 #about .image img,
@@ -439,6 +436,7 @@ ul span.six {
   display: grid;
   gap: 1rem;
   align-items: center;
+  margin-top: 0.5rem;
   height: 100%;
   width: 50%;
   cursor: pointer;
@@ -480,7 +478,7 @@ ul span.six {
 }
 
 #discography .logo-quintal ul li {
-  font-size: 0.875rem;
+  font-size: 0.7rem;
   display: block;
   width: 100%;
 }
@@ -543,7 +541,7 @@ ul span.six {
 }
 
 #discography .logo-cores ul li {
-  font-size: 0.875rem;
+  font-size: 0.7rem;
   display: block;
   width: 100%;
 }
@@ -582,3 +580,187 @@ ul span.six {
   justify-content: center;
   text-align: center;
 }
+
+/* ==== FOOTER ==== */
+
+footer {
+  background: var(--gradient);
+}
+
+footer.section {
+  padding: 4rem 0;
+}
+
+footer .container {
+  display: flex;
+}
+
+footer .logo {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+footer .brand p {
+  color: black;
+  margin-bottom: 0.75rem;
+}
+
+/* Back to top */
+.back-to-top {
+  background: var(--base-color);
+  color: var(--text-color-light);
+
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+
+  padding: 0.5rem;
+  clip-path: circle();
+
+  font-size: 1.5rem;
+  line-height: 0;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: 0.3s;
+  transform: translateY(100%);
+}
+
+.back-to-top.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*========= MEDIA QUERIES =========*/
+/* extra large devices: 1200 > */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 992px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section {
+    padding: 10rem 0;
+  }
+
+  nav .menu {
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+  }
+
+  nav .menu ul {
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav .menu ul li a.title {
+    font: 700 1rem "Montserrat", sans-serif;
+    color: var(--title-color);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav .icon-menu1 {
+    display: none;
+  }
+
+  main {
+    margin-top: var(--header-height);
+  }
+
+  /* home */
+
+  #home .container {
+    grid-auto-flow: column;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  #home .image {
+    order: 1;
+  }
+
+  #home .text {
+    order: 0;
+    max-width: 30rem;
+    text-align: left;
+  }
+
+  /* about */
+
+  #about .container {
+    margin: 0 auto;
+    grid-auto-flow: column;
+  }
+
+  #about .text {
+    order: 0;
+    max-width: 30rem;
+    text-align: left;
+  }
+
+  #about .image::before {
+    content: "";
+    height: 77%;
+    width: 100%;
+    background: var(--base-color-second);
+    position: absolute;
+    top: -7.3%;
+    left: -8%;
+    z-index: 0;
+  }
+
+  /* discography */
+
+  #discography .card {
+    background-image: url(assets/photos/gasta-1.jpeg);
+    background-size: 100%;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+
+  #discography .ep-quintal-container,
+  #discography .single-scores-container {
+    width: 35%;
+    height: 35%;
+  }
+
+  #discography p,
+  #discography h2 {
+    background: #fff;
+    border-radius: 0.2rem;
+    opacity: 50%;
+  }
+
+  #discography img {
+    opacity: 70%;
+  }
+
+  #discography .ep-quintal-container p,
+  #discography .single-scores-container p {
+    visibility: visible;
+    opacity: 1;
+    opacity: 70%;
+  }
+
+  #discography .logo-quintal ul,
+  #discography .logo-cores ul {
+    position: flex;
+    gap: 5rem;
+    top: 0rem;
+    width: 100%;
+    height: 100%;
+    opacity: 70%;
+  }
+
+  #discography .logo-quintal ul li,
+  #discography .logo-cores ul li {
+    font-size: 2rem;
+  }
+}
+
+/* large devices: 1023 > */
+/* large devices: 992 > */

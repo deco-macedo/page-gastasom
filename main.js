@@ -24,18 +24,19 @@ for (const element of toogle) {
     })
   }
 
-    //--------------- MUDAR HEADER QUANDO DER SCROLL NA PAGE --------------- //
-
+    //--------------- MUDAR HEADER QUANDO DER SCROLL NA PAGE --------------- //   
     const header = document.querySelector('#header')
-    const navHeight = header.offsetHeight // atributo de deslocamento da altura do header
-
-    window.addEventListener('scroll', function() {
-      if (this.window.scrollY >= navHeight) {
+    const navHeight = header.offsetHeight
+    
+    function changeHeaderWhenScroll() {
+      if (window.scrollY >= navHeight) {
+        // scroll é maior que a altura do header
         header.classList.add('scroll')
       } else {
+        // menor que a altura do header
         header.classList.remove('scroll')
       }
-    })
+    }
 
      //--------------- MOSTRAR ELEMENTOS QUANDO DER SCROOL NA PAGE --------------- //
 
@@ -56,3 +57,20 @@ for (const element of toogle) {
       `,
       { interval: 100 }
     )
+
+    //--------------- BOTÃO VOLTAR PARA O TOPO --------------- //
+    const backToTopButton = document.querySelector('.back-to-top')
+
+    function backToTop() {
+      if (window.scrollY >= 160) {
+        backToTopButton.classList.add('show')
+      } else {
+        backToTopButton.classList.remove('show')
+      }
+      }
+
+/* When Scroll */
+window.addEventListener('scroll', function () {
+  changeHeaderWhenScroll()
+  backToTop()
+})
